@@ -21,6 +21,8 @@ $ objdump -d -S -M intel casm-c-sample.o
 
 生成されたアセンブリ言語プログラム
 
+自分の環境では
+
 ```
 push ebp
 dec eax
@@ -29,6 +31,25 @@ mov dword [ebp-0x4],0x0
 add dword [ebp-0x4],byte +0x1
 nop
 pop ebp
+ret
+```
+
+本に載ってるのは
+
+```
+# 関数の入り口での典型的な処理
+push ebp
+mov ebp,esp
+sub esp,byte +0x10
+
+# 変数 val の初期化
+mov dword [ebp-0x4],0x0
+
+# 変数 val のインクリメント
+inc dword [ebp-0x4]
+
+# 関数の出口での典型的な処理
+leave
 ret
 ```
 
@@ -85,3 +106,11 @@ mov 移動先, 移動元
 - 関数呼び出しのときにスタックに引数を push して、関数の呼び出し後にベースポインタをスタックポインタに更新するので、  
   ベースポインタの手前には関数への引数があったりするので、ebp-0x4 なんて場所に値を書き込んでも問題はないらしい
 
+## ``inc`` 命令
+
+```
+inc インクリメント対象
+```
+
+例のプログラムでは ``inc dword [ebp-0x4]``  
+``dword [ebp-0x4]`` で変数 ``val`` を指定している
