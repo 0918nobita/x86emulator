@@ -16,3 +16,20 @@ $ ndisasm -b 32 casm-c-sample.bin
 $ gcc -c -g -o casm-c-sample.o casm-c-sample.c
 $ objdump -d -S -M intel casm-c-sample.o
 ```
+
+生成されたアセンブリ言語プログラムをよく見ると
+
+```
+push ebp
+dec eax
+mov ebp,esp
+mov dword [ebp-0x4],0x0
+add dword [ebp-0x4],byte +0x1
+nop
+pop ebp
+ret
+```
+
+``オペコード オペランド1, オペランド2``
+
+オペコードとオペランドを合わせたものを**ニーモニック**と呼ぶ
