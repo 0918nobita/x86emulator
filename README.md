@@ -13,4 +13,6 @@ $ sudo pacman -Syu
 $ sudo pacman -S nasm
 $ gcc -Wl,--entry=func,--oformat=binary -nostdlib -fno-asynchronous-unwind-tables -o casm-c-sample.bin casm-c-sample.c
 $ ndisasm -b 32 casm-c-sample.bin
+$ gcc -c -g -o casm-c-sample.o casm-c-sample.c
+$ objdump -d -S -M intel casm-c-sample.o
 ```
