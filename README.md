@@ -10,7 +10,9 @@
 
 ```bash
 $ sudo pacman -Syu
+# NASM のインストール
 $ sudo pacman -S nasm
+# 
 $ gcc -Wl,--entry=func,--oformat=binary -nostdlib -fno-asynchronous-unwind-tables -o casm-c-sample.bin casm-c-sample.c
 $ ndisasm -b 32 casm-c-sample.bin
 $ gcc -c -g -o casm-c-sample.o casm-c-sample.c
@@ -75,7 +77,8 @@ mov 移動先, 移動元
 変数 ``val`` は ``ebp`` で示されるスタック上の位置から ``4`` だけ前方にずれたところにあるため、``ebp-4`` が変数 ``val`` の先頭位置となる  
 ※ 変数 val が ebp から 4 だけずれた場所にあるのは C 言語の規格ではなく、使ったコンパイラが偶然そこを選んだだけ
 
-``esp`` が通常のスタックポインタ  
-``ebp`` がベースポインタ  
-関数呼び出しごとにベースとなるスタック位置を保存して ``ebp`` の前後で関数引数の変数や、関数内の変数にアクセスする  
-``esp`` のスタック操作があっても ``ebp`` は固定で変わらないのでローカル変数に安定してアクセスできる
+- ``esp`` : 通常のスタックポインタ
+- ``ebp`` : ベースポインタ
+- 関数呼び出しごとにベースとなるスタック位置を保存して ``ebp`` の前後で関数引数の変数や、関数内の変数にアクセスする
+- ``esp`` のスタック操作があっても ``ebp`` は固定で変わらないのでローカル変数に安定してアクセスできる
+
