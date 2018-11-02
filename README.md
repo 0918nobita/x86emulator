@@ -12,7 +12,7 @@
 $ sudo pacman -Syu
 # NASM のインストール
 $ sudo pacman -S nasm
-# 
+# 純粋な機械語 (フラットバイナリ) を出力させる
 $ gcc -Wl,--entry=func,--oformat=binary -nostdlib -fno-asynchronous-unwind-tables -o casm-c-sample.bin casm-c-sample.c
 $ ndisasm -b 32 casm-c-sample.bin
 $ gcc -c -g -o casm-c-sample.o casm-c-sample.c
@@ -81,4 +81,7 @@ mov 移動先, 移動元
 - ``ebp`` : ベースポインタ
 - 関数呼び出しごとにベースとなるスタック位置を保存して ``ebp`` の前後で関数引数の変数や、関数内の変数にアクセスする
 - ``esp`` のスタック操作があっても ``ebp`` は固定で変わらないのでローカル変数に安定してアクセスできる
+
+- 関数呼び出しのときにスタックに引数を push して、関数の呼び出し後にベースポインタをスタックポインタに更新するので、  
+  ベースポインタの手前には関数への引数があったりするので、ebp-0x4 なんて場所に値を書き込んでも問題はないらしい
 
