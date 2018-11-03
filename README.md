@@ -6,6 +6,12 @@
 
 - ThinkPad X230 (Arch linux) 
 
+## サンプルコードについて
+
+| 範囲 | 内容 | ソースコード |
+| --- | --- | --- |
+| 12 ~ 28 |  | `casm-c-sample.c` |
+
 ## やったこと
 
 ```bash
@@ -18,23 +24,6 @@ $ ndisasm -b 32 casm-c-sample.bin
 $ gcc -c -g -o casm-c-sample.o casm-c-sample.c
 $ objdump -d -S -M intel casm-c-sample.o
 ```
-
-生成されたアセンブリ言語プログラム
-
-自分の環境では
-
-```
-push ebp
-dec eax
-mov ebp,esp
-mov dword [ebp-0x4],0x0
-add dword [ebp-0x4],byte +0x1
-nop
-pop ebp
-ret
-```
-
-本に載ってるのは
 
 ```
 # 関数の入り口での典型的な処理
@@ -116,9 +105,3 @@ inc インクリメント対象
 ``dword [ebp-0x4]`` で変数 ``val`` を指定している
 
 - 2 つの機械語命令が 1 つのアセンブリ言語に対応する例外的な命令
-
-## list2-4.c のコンパイルコマンド
-
-```
-$ gcc -Wl,--entry=func,--oformat=binary -nostdlib -fno-asynchronous-unwind-tables -o list2-4.bin list2-4.c
-```

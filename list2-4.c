@@ -7,6 +7,11 @@ void func(void) {
 // 最終的に val に 41 が代入されるプログラム
 
 /*
+ * コンパイルコマンド
+ * $ gcc -Wl,--entry=func,--oformat=binary -nostdlib -fno-asynchronous-unwind-tables -o list2-4.bin list2-4.c
+ */
+
+/*
  *                     void func(void) {
  * push ebp
  * mov ebp, esp
