@@ -114,3 +114,11 @@ inc インクリメント対象
 
 例のプログラムでは ``inc dword [ebp-0x4]``  
 ``dword [ebp-0x4]`` で変数 ``val`` を指定している
+
+- 2 つの機械語命令が 1 つのアセンブリ言語に対応する例外的な命令
+
+## list2-4.c のコンパイルコマンド
+
+```
+$ gcc -Wl,--entry=func,--oformat=binary -nostdlib -fno-asynchronous-unwind-tables -o list2-4.bin list2-4.c
+```
