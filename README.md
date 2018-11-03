@@ -2,44 +2,21 @@
 
 「自作エミュレータで学ぶ x86 アーキテクチャ」を読みながら書いたソースファイル等
 
-## 開発環境
-
-- ThinkPad X230 (Arch linux) 
-
 ## サンプルコードについて
 
 | 範囲 | 内容 | ソースコード |
 | --- | --- | --- |
-| 12 〜 28 | コンパイルと逆アセンブル, オペランド, オペコード, ニーモニック, mov / inc 命令 | `casm-c-sample.c` |
+| 12 〜 28 | コンパイルと逆アセンブル, オペランド/オペコード/ニーモニック, mov/inc 命令 | `casm-c-sample.c` |
+| 39 〜 42 | メモリ, lea 命令, リトル/ビッグエンディアン | `list2-4.c` |
 
-## やったこと
+## 環境構築
+
+Arch linux がインストール済みの場合
 
 ```bash
 $ sudo pacman -Syu
 # NASM のインストール
 $ sudo pacman -S nasm
-# 純粋な機械語 (フラットバイナリ) を出力させる
-$ gcc -Wl,--entry=func,--oformat=binary -nostdlib -fno-asynchronous-unwind-tables -o casm-c-sample.bin casm-c-sample.c
-$ ndisasm -b 32 casm-c-sample.bin
-$ gcc -c -g -o casm-c-sample.o casm-c-sample.c
-$ objdump -d -S -M intel casm-c-sample.o
-```
-
-```
-# 関数の入り口での典型的な処理
-push ebp
-mov ebp,esp
-sub esp,byte +0x10
-
-# 変数 val の初期化
-mov dword [ebp-0x4],0x0
-
-# 変数 val のインクリメント
-inc dword [ebp-0x4]
-
-# 関数の出口での典型的な処理
-leave
-ret
 ```
 
 ``オペコード オペランド1, オペランド2``
