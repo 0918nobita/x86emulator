@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  dev:
+    build: './'
+    volumes:
+      - './src:/src'
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
